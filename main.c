@@ -5,7 +5,8 @@
 #include <stdint.h>
 
 #include <raylib.h>
-#include "CirculoDasHoras.h"
+#include "circulodashoras.h"
+#include "tela.h"
 
 int main(void)
 {
@@ -31,7 +32,7 @@ int main(void)
     EndDrawing();
   }
 
-  //raios
+  //desalocação em sequência reversa.
   CirculoDasHoras_destrutor( cdh );
   Tela_destrutor( tela );
   CloseWindow();
