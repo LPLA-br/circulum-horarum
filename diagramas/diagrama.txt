@@ -1,0 +1,60 @@
+@startuml
+'metaclass - header composto apenas de funções.
+'depender(embutido no código) ou associar(ponteiro)
+'composição ou agregação (ou herança)
+
+'I.Assume-se abreviações em nome de parâmetros de funções(membro) neste diagrama.
+
+'--------------------------------
+'HEADERS COM ESTRUTURAS E FUNÇÕES MEMBRO
+
+struct Tela {
+  int largura
+  int altura
+  const char* titulo
+
+  Tela* Tela_construtor( int a, int l, const char* t )
+  void Tela_destrutor( Tela* t )
+}
+
+struct CirculoDasHoras {
+  float raio
+  Vector2 posicao
+
+  CirculoDasHoras* CirculoDasHoras_construtor( Tela* t )
+  void CirculoDasHoras_destrutor( CirculoDasHoras* c )
+}
+
+struct RaioFixo {
+  define NUMERO_RAIOS 23
+
+  Vector2* centro
+  Vector2* borda
+
+  RaioFixo* raiosDasHoras_polidestrutor( CirculoDasHoras* c )
+  void raiosDasHoras_polidestrutor( RaioFixo* raiosFixos )
+}
+
+'--------------------------------
+'HEADERS COM APENAS FUNÇÕES
+
+metaclass componentesangulo {
+  define CIRCULO_GRAUS 360
+
+  obterComponenteX( hipotenusa, anguloGraus )
+  obterComponenteY( hipotenusa, anguloGraus )
+}
+
+metaclass degrad {
+  float radianoParaGrau( radiano )
+  float grauParaRadiano( grau )
+}
+
+'--------------------------------
+
+RaioFixo --> CirculoDasHoras
+RaioFixo --> componentesangulo
+CirculoDasHoras --> Tela
+componentesangulo --> degrad
+
+@enduml

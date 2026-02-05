@@ -6,6 +6,8 @@
 
 //@dependente: circulodashoras
 
+#define NUMERO_RAIOS 23
+
 typedef struct
 {
   Vector2* centro;
@@ -15,7 +17,7 @@ typedef struct
 RaioFixo* raiosDasHoras_policonstrutor( CirculoDasHoras* circulo );
 void raiosDasHoras_polidestrutor( RaioFixo* raiosFixos );
 
-//recebe angulo desejado e retorna componentes x,y para borda do Vector2
-Vector2* obterComponentesParaAngulo( float anguloGraus, int raio );
+//PRIVADO
+Vector2* obterComponentesXYBorda_subconstrutor( Vector2* centro, float raio, float anguloGraus );
 
 #endif // RAIOFIXO_H_INCLUDED

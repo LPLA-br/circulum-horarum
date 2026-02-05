@@ -3,9 +3,9 @@
 #include <stdio.h>
 
 #include "raiofixo.h"
+#include "componentesangulo.h"
 
-#define NUMERO_RAIOS 23
-
+/** desc: aponta para centro do circulo & aponta para alocado. Retorna matriz de tamanho NUMERO_RAIOS */
 RaioFixo* raiosDasHoras_policonstrutor( CirculoDasHoras* circulo )
 {
   RaioFixo* raios = malloc( sizeof( RaioFixo ) * NUMERO_RAIOS );
@@ -13,15 +13,13 @@ RaioFixo* raiosDasHoras_policonstrutor( CirculoDasHoras* circulo )
   for ( int i = 0; i < NUMERO_RAIOS; i++ )
   {
     (raios+i)->centro = circulo->posicao;
-
-    (raios+i)->borda = malloc( sizeof(Vector2) );
-    (raios+i)->borda->x = circulo->posicao->x;
-    (raios+i)->borda->y = (circulo->posicao->y - circulo->raio);
+    (raios+i)->borda = obterComponentesXYBorda_subconstrutor( circulo->posicao, circulo->raio, (int)(CIRCULO_GRAUS*(i/NUMERO_RAIOS)) );
   }
 
   return raios;
 }
 
+/** desc: limpa e libera memória das bordas (componentes) & limpa toda estrutura raiosFixos desalocando-a. */
 void raiosDasHoras_polidestrutor( RaioFixo* raiosFixos )
 {
   if ( raiosFixos != NULL )
@@ -44,11 +42,16 @@ void raiosDasHoras_polidestrutor( RaioFixo* raiosFixos )
   exit(1);
 }
 
-Vector2* obterComponentesParaAngulo( float anguloGraus, int raio )
+/* desc: subconstrutor de "raiosDasHoras_policonstrutor" para calculo das componentes.
+ * PRIVADO */
+Vector2* obterComponentesXYBorda_subconstrutor( Vector2* centro, float raio, float anguloGraus )
 {
-  //raio vezes coseno de theta em graus
-  return NULL;
+  Vector2* posicaoBorda = malloc( sizeof(Vector2) );
+
+  posicaoBorda->x = centro->x + obterComponenteX( raio, anguloGraus );
+  posicaoBorda->y = centro->y + obterComponenteY( raio, anguloGraus );
+
+  return posicaoBorda;
 }
 
-// TODO: função que recebe callback DrawLineV() ...
 
