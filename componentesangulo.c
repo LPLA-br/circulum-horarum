@@ -14,6 +14,6 @@ float obterComponenteX( const float hipotenusa, float anguloGraus )
 float obterComponenteY( const float hipotenusa, float anguloGraus )
 {
   float anguloRadiano = grauParaRadiano( anguloGraus );
-  return hipotenusa * sinf( anguloGraus );
+  return hipotenusa * sinf( anguloRadiano );
 }
 

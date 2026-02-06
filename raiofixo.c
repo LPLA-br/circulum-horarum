@@ -1,48 +1,44 @@
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
+
+#include <raylib.h>
 
 #include "raiofixo.h"
 #include "componentesangulo.h"
 
 /** desc: aponta para centro do circulo & aponta para alocado. Retorna matriz de tamanho NUMERO_RAIOS */
-RaioFixo* raiosDasHoras_policonstrutor( CirculoDasHoras* circulo )
+RaioFixo* RaiosDasHoras_policonstrutor( CirculoDasHoras* circulo )
 {
   RaioFixo* raios = malloc( sizeof( RaioFixo ) * NUMERO_RAIOS );
 
   for ( int i = 0; i < NUMERO_RAIOS; i++ )
   {
     (raios+i)->centro = circulo->posicao;
-    (raios+i)->borda = obterComponentesXYBorda_subconstrutor( circulo->posicao, circulo->raio, (int)(CIRCULO_GRAUS*(i/NUMERO_RAIOS)) );
+    (raios+i)->borda = obterComponentesXYBorda_subconstrutor( circulo->posicao, circulo->raio, (CIRCULO_GRAUS*((float)i/NUMERO_RAIOS)) );
   }
 
   return raios;
 }
 
 /** desc: limpa e libera memória das bordas (componentes) & limpa toda estrutura raiosFixos desalocando-a. */
-void raiosDasHoras_polidestrutor( RaioFixo* raiosFixos )
+void RaiosDasHoras_polidestrutor( RaioFixo* raiosFixos )
 {
   if ( raiosFixos != NULL )
   {
     //dependências
     for ( int i = 0; i < NUMERO_RAIOS; i++ )
     {
-      memset( (raiosFixos+i)->borda, 0x00, sizeof(Vector2) );
       free( (raiosFixos+i)->borda );
     }
 
-    for ( int i = 0; i < NUMERO_RAIOS; i++ )
-    {
-      memset( (raiosFixos+i), 0x00, sizeof( RaioFixo ) );
-      free( (raiosFixos+i) );
-    }
+    free( raiosFixos );
     return;
   }
   perror("raiosFixos é NULL");
   exit(1);
 }
 
-/* desc: subconstrutor de "raiosDasHoras_policonstrutor" para calculo das componentes.
+/* desc: subconstrutor de "RaiosDasHoras_policonstrutor" para calculo das componentes.
  * PRIVADO */
 Vector2* obterComponentesXYBorda_subconstrutor( Vector2* centro, float raio, float anguloGraus )
 {
@@ -54,4 +50,13 @@ Vector2* obterComponentesXYBorda_subconstrutor( Vector2* centro, float raio, flo
   return posicaoBorda;
 }
 
+void renderizarRaiosFixos( void(*renderizador)(Vector2,Vector2,Color), RaioFixo* raios )
+{
+  for ( int i = 0; i < NUMERO_RAIOS; i++ )
+  {
+    renderizador( *(raios+i)->centro, *(raios+i)->borda, BLACK );
+  }
+
+  return;
+}
 

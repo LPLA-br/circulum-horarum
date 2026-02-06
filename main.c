@@ -13,7 +13,7 @@ int main(void)
 {
   Tela* tela = Tela_construtor( 1600, 700, "CIRCVLVM HORARVM" );
   CirculoDasHoras* cdh = CirculoDasHoras_construtor( tela );
-  RaioFixo* raiosHoras = raiosDasHoras_policonstrutor( cdh );
+  RaioFixo* raiosHoras = RaiosDasHoras_policonstrutor( cdh );
 
   InitWindow( tela->largura, tela->altura, tela->titulo );
   SetTargetFPS( 30 );
@@ -24,11 +24,12 @@ int main(void)
       ClearBackground(BLACK);
       DrawText( "CIRCVLVM HORARVM", 10, 10, 20, WHITE );
       DrawCircleV( *(Vector2*)cdh->posicao, cdh->raio, WHITE );
-      //DrawLineV( inicio, fim, BLACK );
+      renderizarRaiosFixos( DrawLineV, raiosHoras );
     EndDrawing();
   }
 
   //desalocação em sequência reversa.
+  RaiosDasHoras_polidestrutor( raiosHoras );
   CirculoDasHoras_destrutor( cdh );
   Tela_destrutor( tela );
   CloseWindow();

@@ -22,10 +22,7 @@ void CirculoDasHoras_destrutor( CirculoDasHoras* circulo )
   if ( circulo != NULL )
   {
     //dependências
-    memset( circulo->posicao, 0x00, sizeof(Vector2) );
     free(circulo->posicao );
-
-    memset( circulo, 0x00, sizeof(CirculoDasHoras) );
     free( circulo );
   }
   perror("CirculoDasHoras é NULL");

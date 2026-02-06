@@ -11,13 +11,16 @@ CC_FLAGS=-O0		\
 CC_DFLAG=-g
 
 # CÓDIGOS FONTE
-SRCS= main.c circulodashoras.c tela.c raiofixo.c
+SRCS= main.c circulodashoras.c tela.c raiofixo.c degrad.c componentesangulo.c
 
 # OBJETOS GERADOS DOS CÓDIGOS FONTE
-OBJS= main.o circulodashoras.o tela.o raiofixo.o
+OBJS= main.o circulodashoras.o tela.o raiofixo.o degrad.o componentesangulo.o
 
 # LIGAÇÃO PARA raylib (adiciona (-L PATH) se não instalado)
-RECLAMES= -lraylib
+RECLAMES= -lm -lraylib
+
+#EXTRA PARA CAPTURA DE PROBLEMAS
+EXTRA= -Wall -Wextra -Wpedantic -fsanitize=address,undefined
 
 #COMPILAÇÃO FINAL
 
@@ -27,7 +30,7 @@ all: $(OBJS)
 #COMPILAÇÃO PARA DEBUG ASSEMBLY COM O GDB (gnu debugger)
 
 debug: $(OBJS)
-	$(CC) $(CC_DFLAG) $(SRCS) -o $(PROJ_NAME).gdb $(RECLAMES) $(CC_FLAGS) 
+	$(CC) $(CC_DFLAG) $(EXTRA) $(SRCS) -o $(PROJ_NAME).gdb $(RECLAMES) $(CC_FLAGS) 
 
 #COMPILAÇÃO DOS OBJETOS
 
@@ -44,6 +47,13 @@ raiofixo.o:
 
 tela.o:
 	$(CC) -c tela.c -o tela.o
+
+degrad.o:
+	$(CC) -c degrad.c -o degrad.o
+
+componentesangulo.o:
+	$(CC) -c componentesangulo.c -o componentesangulo.o
+
 
 # REMOÇÃO DO RESULTADO DA COMPILAÇÃO
 
