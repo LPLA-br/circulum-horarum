@@ -11,10 +11,10 @@ CC_FLAGS=-O0		\
 CC_DFLAG=-g
 
 # CÓDIGOS FONTE
-SRCS= main.c circulodashoras.c tela.c raiofixo.c degrad.c componentesangulo.c
+SRCS= main.c circulodashoras.c tela.c raiofixo.c degrad.c componentesangulo.c ponteiroagora.c
 
 # OBJETOS GERADOS DOS CÓDIGOS FONTE
-OBJS= main.o circulodashoras.o tela.o raiofixo.o degrad.o componentesangulo.o
+OBJS= main.o circulodashoras.o tela.o raiofixo.o degrad.o componentesangulo.o ponteiroagora.o
 
 # LIGAÇÃO PARA raylib (adiciona (-L PATH) se não instalado)
 RECLAMES= -lm -lraylib
@@ -44,6 +44,9 @@ circulodashoras.o:
 
 raiofixo.o:
 	$(CC) -c raiofixo.c -o raiofixo.o
+
+ponteiroagora.o:
+	$(CC) -c ponteiroagora.c -o ponteiroagora.o
 
 tela.o:
 	$(CC) -c tela.c -o tela.o

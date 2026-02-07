@@ -10,9 +10,9 @@ CirculoDasHoras* CirculoDasHoras_construtor( Tela* tela )
 
   cdh->posicao = malloc( sizeof( Vector2 ) );
 
-  cdh->raio = (tela->largura/2-(10/2));
-  cdh->posicao->x = tela->largura/2;
-  cdh->posicao->y = tela->altura/2;
+  cdh->raio =       (float)tela->largura/2-(10.0/2);
+  cdh->posicao->x = (float)tela->largura/2;
+  cdh->posicao->y = (float)tela->altura/2;
 
   return cdh;
 }
@@ -29,4 +29,9 @@ void CirculoDasHoras_destrutor( CirculoDasHoras* circulo )
   exit(1);
 }
 
+void renderizarCirculoDasHoras( void(*renderizador)(Vector2,float,Color), CirculoDasHoras* cdh )
+{
+  renderizador( *cdh->posicao, cdh->raio, WHITE );
+  return;
+}
 

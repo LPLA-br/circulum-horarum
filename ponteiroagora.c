@@ -10,6 +10,7 @@ PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circulo )
   PonteiroAgora* ponteiroAgora = malloc( sizeof( PonteiroAgora ) );
 
   ponteiroAgora->gmt = 0;
+
   carregarHoraMinutoCorrente( ponteiroAgora );
 
   ponteiroAgora->anguloGraus = 90;
@@ -32,15 +33,15 @@ void PonteiroAgora_destrutor( PonteiroAgora* ponteiroAgora )
 
 /** Desc: função executiva que rotaciona o ponteiroAgora por segundo enquanto
  * seu elemento bordaMovel não for nulo.*/
-void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, const float raio )
+void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh )
 {
-  ponteiroAgora->bordaMovel->x = ponteiroAgora->centro->x + obterComponenteX( raio, ponteiroAgora->anguloGraus );
-  ponteiroAgora->bordaMovel->y = ponteiroAgora->centro->y + obterComponenteY( raio, ponteiroAgora->anguloGraus );
+  ponteiroAgora->bordaMovel->x = ponteiroAgora->centro->x + obterComponenteX( cdh->raio, ponteiroAgora->anguloGraus );
+  ponteiroAgora->bordaMovel->y = ponteiroAgora->centro->y + obterComponenteY( cdh->raio, ponteiroAgora->anguloGraus );
 
   return;
 }
 
-/** Desc: função publica para correção de GMT */
+/** Desc: função pública para correção de GMT */
 void definirGMT( PonteiroAgora* ponteiroAgora , int8_t GMTproposto )
 {
   if ( GMTproposto >= -11 || GMTproposto <= 12 )
@@ -61,7 +62,6 @@ void carregarHoraMinutoCorrente( PonteiroAgora* ponteiroAgora )
   ponteiroAgora->hora = tempo->tm_hour + ponteiroAgora->gmt;
   ponteiroAgora->minuto = tempo->tm_min;
 
-  free(tempo);
   return;
 }
 
@@ -71,12 +71,22 @@ void computarAnguloEmFuncaoDaHora( PonteiroAgora* ponteiroAgora )
   ponteiroAgora->anguloGraus = (CIRCULO_GRAUS * ( (float)ponteiroAgora->hora / HORAS_NO_DIA ));
 }
 
-/** Desc: subfunção de "computarAnguloEmFuncaoDaHora()"  */
+/** Desc: subfunção (não dependente -> complementar) de "computarAnguloEmFuncaoDaHora()"  */
 void computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( PonteiroAgora* ponteiroAgora )
 {
   if ( ponteiroAgora->minuto == MINUTOS_NA_HORA ) return; //responsabilidade superior
 
   const float tamanhoDumaFatia =  ((float)CIRCULO_GRAUS / HORAS_NO_DIA) ;
   ponteiroAgora->anguloGraus = ( tamanhoDumaFatia / MINUTOS_NA_HORA ) * ponteiroAgora->minuto;
+}
+
+void renderizarPonteiroDoAgora( void(*renderizador)(Vector2,Vector2,Color), PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh )
+{
+  carregarHoraMinutoCorrente( ponteiroAgora );
+  rotacionarHorariamentePonteiroAgora( ponteiroAgora, cdh );
+  computarAnguloEmFuncaoDaHora( ponteiroAgora );
+  computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( ponteiroAgora );
+  renderizador( *ponteiroAgora->centro, *ponteiroAgora->bordaMovel, RED );
+  return;
 }
 

@@ -14,9 +14,9 @@
 
 typedef struct
 {
+  int8_t gmt;
   int hora;
   int minuto;
-  int8_t gmt;
   float anguloGraus;
 
   Vector2* centro;
@@ -26,12 +26,13 @@ typedef struct
 PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circulo );
 void PonteiroAgora_destrutor( PonteiroAgora* ponteiroAgora );
 
-void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, float raio );
+void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh );
 void definirGMT( PonteiroAgora* ponteiroAgora , int8_t GMTproposto );
 void carregarHoraMinutoCorrente( PonteiroAgora* ponteiroAgora );
 
 void computarAnguloEmFuncaoDaHora( PonteiroAgora* ponteiroAgora );
 void computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( PonteiroAgora* ponteiroAgora );
 
+void renderizarPonteiroDoAgora( void(*renderizador)(Vector2,Vector2,Color), PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh );
 
 #endif // PONTEIROAGORA_H_INCLUDED

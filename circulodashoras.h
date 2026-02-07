@@ -20,4 +20,6 @@ typedef struct
 CirculoDasHoras* CirculoDasHoras_construtor( Tela* tela );
 void CirculoDasHoras_destrutor( CirculoDasHoras* circulo );
 
+void renderizarCirculoDasHoras( void(*renderizador)(Vector2,float,Color), CirculoDasHoras* cdh );
+
 #endif
