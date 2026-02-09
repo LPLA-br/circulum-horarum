@@ -35,6 +35,29 @@ struct RaioFixo {
   void raiosDasHoras_polidestrutor( RaioFixo* raiosFixos )
 }
 
+struct  PonteiroAgora {
+  define HORAS_NO_DIA 24
+  define MINUTOS_NA_HORA 60
+
+  int8_t gmt
+  int hora
+  int minuto
+  float anguloGraus
+
+  Vector2* centro
+  Vector2* bordaMovel
+
+  PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circulo )
+  void PonteiroAgora_destrutor( PonteiroAgora* ponteiroAgora )
+
+  void rotacionarHorariamentePonteiroAgora(...)
+  void definirGMT(...)
+  void carregarHoraMinutoCorrente(...)
+  void computarAnguloEmFuncaoDaHora(...)
+  void computarAcrescimoDosMinutosParaAnguloDaHoraComputadada(...)
+  void renderizarPonteiroDoAgora(...)
+}
+
 '--------------------------------
 'HEADERS COM APENAS FUNÇÕES
 
@@ -46,8 +69,12 @@ metaclass componentesangulo {
 }
 
 metaclass degrad {
+  define LOCAL_MAX 360.0
+  define LOCAL_MIN 0.0
+
   float radianoParaGrau( radiano )
   float grauParaRadiano( grau )
+  float normalizarPorModuloEmGraus( anguloSelvagem )
 }
 
 '--------------------------------
@@ -56,5 +83,7 @@ RaioFixo --> CirculoDasHoras
 RaioFixo --> componentesangulo
 CirculoDasHoras --> Tela
 componentesangulo --> degrad
+PonteiroAgora --> componentesangulo
+PonteiroAgora --> degrad
 
 @enduml
