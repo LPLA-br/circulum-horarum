@@ -3,9 +3,9 @@
 //****************
 #include <stdlib.h>
 #include <stdint.h>
-#include <stdio.h>
 
 #include <raylib.h>
+
 #include "circulodashoras.h"
 #include "tela.h"
 #include "raiofixo.h"

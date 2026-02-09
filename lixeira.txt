@@ -1,4 +1,6 @@
 main.c
+// Abaixo deve ser comentado "carregarHoraMinutoCorrente()"
+// Manipulação direta dos minutos
       if ( IsKeyDown(KEY_A) )
       {
         pa->minuto++;
@@ -13,4 +15,21 @@ main.c
 
       char num[64];
       sprintf( num, "%i,%f", pa->minuto, pa->anguloGraus );
+      DrawText( num, pa->centro->x, pa->centro->y, 20, RED );
+
+// Manipulação direta das horas
+      if ( IsKeyDown(KEY_A) )
+      {
+        pa->hora++;
+      }
+      if ( IsKeyDown( KEY_D ) )
+      {
+        pa->hora--;
+      }
+
+      if ( pa->hora < 0 ) pa->hora = 24;
+      else if ( pa->hora > 24 ) pa->hora = 0;
+
+      char num[64];
+      sprintf( num, "%i,%f", pa->hora, pa->anguloGraus );
       DrawText( num, pa->centro->x, pa->centro->y, 20, RED );

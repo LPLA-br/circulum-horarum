@@ -3,5 +3,6 @@
 
 float radianoParaGrau( float radiano );
 float grauParaRadiano( float grau );
+float normalizarPorModuloEmGraus( float anguloSelvagem );
 
 #endif // DEGRAD_H_INCLUDED

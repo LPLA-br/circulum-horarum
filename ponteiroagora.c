@@ -4,6 +4,7 @@
 
 #include "ponteiroagora.h"
 #include "componentesangulo.h"
+#include "degrad.h"
 
 PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circulo )
 {
@@ -68,8 +69,7 @@ void carregarHoraMinutoCorrente( PonteiroAgora* ponteiroAgora )
 /** Desc: computa angulo horário sem ajuste dos minutos. */
 void computarAnguloEmFuncaoDaHora( PonteiroAgora* ponteiroAgora )
 {
-  //TODO: REFATORAR MARCADOR DOS MINUTOS et CORRIGIR 24 MÁGICO ABAIXO
-  ponteiroAgora->anguloGraus = ((float)CIRCULO_GRAUS/HORAS_NO_DIA)*ponteiroAgora->hora;
+  ponteiroAgora->anguloGraus = normalizarPorModuloEmGraus( ( ((float)CIRCULO_GRAUS/HORAS_NO_DIA)*ponteiroAgora->hora ) - 90 );
 }
 
 /** Desc: subfunção (não dependente -> complementar) de "computarAnguloEmFuncaoDaHora()"  */
