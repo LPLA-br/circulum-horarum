@@ -10,11 +10,25 @@ CC_FLAGS=-O0		\
 #GBC DEGUG FLAG
 CC_DFLAG=-g
 
+# PREFIXO SRC
+SRC=./src/
 # CÓDIGOS FONTE
-SRCS= main.c circulodashoras.c tela.c raiofixo.c degrad.c componentesangulo.c ponteiroagora.c
+SRCS= $(SRC)main.c \
+			$(SRC)circulodashoras.c \
+			$(SRC)tela.c \
+			$(SRC)raiofixo.c \
+			$(SRC)degrad.c \
+			$(SRC)componentesangulo.c \
+			$(SRC)ponteiroagora.c
 
 # OBJETOS GERADOS DOS CÓDIGOS FONTE
-OBJS= main.o circulodashoras.o tela.o raiofixo.o degrad.o componentesangulo.o ponteiroagora.o
+OBJS= main.o \
+			circulodashoras.o \
+			tela.o \
+			raiofixo.o \
+			degrad.o \
+			componentesangulo.o \
+			ponteiroagora.o
 
 # LIGAÇÃO PARA raylib (adiciona (-L PATH) se não instalado)
 RECLAMES= -lm -lraylib
@@ -35,27 +49,27 @@ debug: $(OBJS)
 #COMPILAÇÃO DOS OBJETOS
 
 main.o:
-	$(CC) -c main.c -o main.o
+	$(CC) -c $(SRC)main.c -o main.o
 
 #SUBPARTES
 
 circulodashoras.o:
-	$(CC) -c circulodashoras.c -o circulodashoras.o
+	$(CC) -c $(SRC)circulodashoras.c -o circulodashoras.o
 
 raiofixo.o:
-	$(CC) -c raiofixo.c -o raiofixo.o
+	$(CC) -c $(SRC)raiofixo.c -o raiofixo.o
 
 ponteiroagora.o:
-	$(CC) -c ponteiroagora.c -o ponteiroagora.o
+	$(CC) -c $(SRC)ponteiroagora.c -o ponteiroagora.o
 
 tela.o:
-	$(CC) -c tela.c -o tela.o
+	$(CC) -c $(SRC)tela.c -o tela.o
 
 degrad.o:
-	$(CC) -c degrad.c -o degrad.o
+	$(CC) -c $(SRC)degrad.c -o degrad.o
 
 componentesangulo.o:
-	$(CC) -c componentesangulo.c -o componentesangulo.o
+	$(CC) -c $(SRC)componentesangulo.c -o componentesangulo.o
 
 
 # REMOÇÃO DO RESULTADO DA COMPILAÇÃO
