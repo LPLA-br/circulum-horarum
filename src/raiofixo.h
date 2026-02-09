@@ -4,10 +4,6 @@
 #include <raylib.h>
 #include "circulodashoras.h"
 
-//@dependente: circulodashoras
-
-#define NUMERO_RAIOS 24 // i<24 logo 0..23
-
 typedef struct
 {
   Vector2* centro;

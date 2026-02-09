@@ -3,6 +3,7 @@
 
 #include <raylib.h>
 
+#include "constantes.h"
 #include "raiofixo.h"
 #include "componentesangulo.h"
 

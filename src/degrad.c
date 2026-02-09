@@ -1,8 +1,7 @@
 #include <math.h> //-lm
 #include "degrad.h"
 
-#define LOCAL_MAX 360.0
-#define LOCAL_MIN 0.0
+#include "constantes.h"
 
 float radianoParaGrau( float radiano )
 {

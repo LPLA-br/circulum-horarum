@@ -1,8 +1,6 @@
 #ifndef TELA_H_INCLUDED
 #define TELA_H_INCLUDED
 
-//@independente
-
 typedef struct
 {
   int largura;

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 
+#include "constantes.h"
 #include "ponteiroagora.h"
 #include "componentesangulo.h"
 #include "degrad.h"
@@ -14,7 +15,7 @@ PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circulo )
 
   carregarHoraMinutoCorrente( ponteiroAgora );
 
-  ponteiroAgora->anguloGraus = 90;
+  ponteiroAgora->anguloGraus = CORRECAO_ANGULAR;
 
   ponteiroAgora->centro = circulo->posicao;
 
@@ -69,7 +70,7 @@ void carregarHoraMinutoCorrente( PonteiroAgora* ponteiroAgora )
 /** Desc: computa angulo horário sem ajuste dos minutos. */
 void computarAnguloEmFuncaoDaHora( PonteiroAgora* ponteiroAgora )
 {
-  ponteiroAgora->anguloGraus = normalizarPorModuloEmGraus( ( ((float)CIRCULO_GRAUS/HORAS_NO_DIA)*ponteiroAgora->hora ) - 90 );
+  ponteiroAgora->anguloGraus = normalizarPorModuloEmGraus( ( ((float)CIRCULO_GRAUS/HORAS_NO_DIA)*ponteiroAgora->hora ) - CORRECAO_ANGULAR );
 }
 
 /** Desc: subfunção (não dependente -> complementar) de "computarAnguloEmFuncaoDaHora()"  */
@@ -77,8 +78,7 @@ void computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( PonteiroAgora* pont
 {
   if ( ponteiroAgora->minuto == MINUTOS_NA_HORA ) return; //responsabilidade superior
 
-  const float tamanhoDumaFatia =  ((float)CIRCULO_GRAUS / HORAS_NO_DIA) ;
-  ponteiroAgora->anguloGraus += ( tamanhoDumaFatia / MINUTOS_NA_HORA ) * ponteiroAgora->minuto;
+  ponteiroAgora->anguloGraus += ( FATIA / MINUTOS_NA_HORA ) * ponteiroAgora->minuto;
 }
 
 void renderizarPonteiroDoAgora( void(*renderizador)(Vector2,Vector2,Color), PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh )

@@ -10,6 +10,7 @@
 #include "tela.h"
 #include "raiofixo.h"
 #include "ponteiroagora.h"
+#include "numeros.h"
 
 int main(void)
 {
@@ -31,6 +32,7 @@ int main(void)
       renderizarCirculoDasHoras( DrawCircleV, cdh );
       renderizarRaiosFixos( DrawLineV, raiosHoras );
       renderizarPonteiroDoAgora( DrawLineV, pa, cdh );
+      renderizarNumeros( DrawText, cdh );
 
     EndDrawing();
   }

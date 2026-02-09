@@ -19,7 +19,8 @@ SRCS= $(SRC)main.c \
 			$(SRC)raiofixo.c \
 			$(SRC)degrad.c \
 			$(SRC)componentesangulo.c \
-			$(SRC)ponteiroagora.c
+			$(SRC)ponteiroagora.c \
+			$(SRC)numeros.c
 
 # OBJETOS GERADOS DOS CÓDIGOS FONTE
 OBJS= main.o \
@@ -28,7 +29,8 @@ OBJS= main.o \
 			raiofixo.o \
 			degrad.o \
 			componentesangulo.o \
-			ponteiroagora.o
+			ponteiroagora.o \
+			numeros.o \
 
 # LIGAÇÃO PARA raylib (adiciona (-L PATH) se não instalado)
 RECLAMES= -lm -lraylib
@@ -71,6 +73,8 @@ degrad.o:
 componentesangulo.o:
 	$(CC) -c $(SRC)componentesangulo.c -o componentesangulo.o
 
+numeros.o:
+	$(CC) -c $(SRC)numeros.c -o numeros.o
 
 # REMOÇÃO DO RESULTADO DA COMPILAÇÃO
 
