@@ -3,6 +3,7 @@
 //****************
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdio.h>
 
 #include <raylib.h>
 #include "circulodashoras.h"
@@ -16,6 +17,7 @@ int main(void)
   CirculoDasHoras* cdh = CirculoDasHoras_construtor( tela );
   RaioFixo* raiosHoras = RaiosDasHoras_policonstrutor( cdh );
   PonteiroAgora* pa = PonteiroAgora_construtor( cdh );
+  definirGMT( pa, -3 );
 
   InitWindow( tela->largura, tela->altura, tela->titulo );
   SetTargetFPS( 30 );

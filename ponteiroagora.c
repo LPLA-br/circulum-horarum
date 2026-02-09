@@ -68,7 +68,8 @@ void carregarHoraMinutoCorrente( PonteiroAgora* ponteiroAgora )
 /** Desc: computa angulo horário sem ajuste dos minutos. */
 void computarAnguloEmFuncaoDaHora( PonteiroAgora* ponteiroAgora )
 {
-  ponteiroAgora->anguloGraus = (CIRCULO_GRAUS * ( (float)ponteiroAgora->hora / HORAS_NO_DIA ));
+  //TODO: REFATORAR MARCADOR DOS MINUTOS et CORRIGIR 24 MÁGICO ABAIXO
+  ponteiroAgora->anguloGraus = ((float)CIRCULO_GRAUS/HORAS_NO_DIA)*ponteiroAgora->hora;
 }
 
 /** Desc: subfunção (não dependente -> complementar) de "computarAnguloEmFuncaoDaHora()"  */
@@ -77,7 +78,7 @@ void computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( PonteiroAgora* pont
   if ( ponteiroAgora->minuto == MINUTOS_NA_HORA ) return; //responsabilidade superior
 
   const float tamanhoDumaFatia =  ((float)CIRCULO_GRAUS / HORAS_NO_DIA) ;
-  ponteiroAgora->anguloGraus = ( tamanhoDumaFatia / MINUTOS_NA_HORA ) * ponteiroAgora->minuto;
+  ponteiroAgora->anguloGraus += ( tamanhoDumaFatia / MINUTOS_NA_HORA ) * ponteiroAgora->minuto;
 }
 
 void renderizarPonteiroDoAgora( void(*renderizador)(Vector2,Vector2,Color), PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh )

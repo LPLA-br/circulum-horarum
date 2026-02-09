@@ -9,8 +9,8 @@
 //#define DIA_EM_SEGUNDOS 86400
 //#define DIA_EM_MINUTOS  720
 
-#define HORAS_NO_DIA 23
-#define MINUTOS_NA_HORA 59
+#define HORAS_NO_DIA 24
+#define MINUTOS_NA_HORA 60
 
 typedef struct
 {
