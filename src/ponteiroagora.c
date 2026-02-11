@@ -7,7 +7,7 @@
 #include "componentesangulo.h"
 #include "degrad.h"
 
-PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circulo )
+PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circuloHoras )
 {
   PonteiroAgora* ponteiroAgora = malloc( sizeof( PonteiroAgora ) );
 
@@ -17,7 +17,7 @@ PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circulo )
 
   ponteiroAgora->anguloGraus = CORRECAO_ANGULAR;
 
-  ponteiroAgora->centro = circulo->posicao;
+  ponteiroAgora->centro = circuloHoras->posicao;
 
   ponteiroAgora->bordaMovel = malloc( sizeof( Vector2 ) );
   ponteiroAgora->bordaMovel->x = 0;
@@ -35,10 +35,10 @@ void PonteiroAgora_destrutor( PonteiroAgora* ponteiroAgora )
 
 /** Desc: função executiva que rotaciona o ponteiroAgora por segundo enquanto
  * seu elemento bordaMovel não for nulo.*/
-void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh )
+void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, CirculoDasHoras* circuloHoras )
 {
-  ponteiroAgora->bordaMovel->x = ponteiroAgora->centro->x + obterComponenteX( cdh->raio, ponteiroAgora->anguloGraus );
-  ponteiroAgora->bordaMovel->y = ponteiroAgora->centro->y + obterComponenteY( cdh->raio, ponteiroAgora->anguloGraus );
+  ponteiroAgora->bordaMovel->x = ponteiroAgora->centro->x + obterComponenteX( circuloHoras->raio, ponteiroAgora->anguloGraus );
+  ponteiroAgora->bordaMovel->y = ponteiroAgora->centro->y + obterComponenteY( circuloHoras->raio, ponteiroAgora->anguloGraus );
 
   return;
 }
@@ -81,13 +81,46 @@ void computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( PonteiroAgora* pont
   ponteiroAgora->anguloGraus += ( FATIA / MINUTOS_NA_HORA ) * ponteiroAgora->minuto;
 }
 
-void renderizarPonteiroDoAgora( void(*renderizador)(Vector2,Vector2,Color), PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh )
+void renderizarPonteiroDoAgora( void(*renderizador)(Vector2,Vector2,Color), PonteiroAgora* ponteiroAgora, CirculoDasHoras* circuloHoras )
 {
   carregarHoraMinutoCorrente( ponteiroAgora );
-  rotacionarHorariamentePonteiroAgora( ponteiroAgora, cdh );
+  rotacionarHorariamentePonteiroAgora( ponteiroAgora, circuloHoras );
   computarAnguloEmFuncaoDaHora( ponteiroAgora );
   computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( ponteiroAgora );
   renderizador( *ponteiroAgora->centro, *ponteiroAgora->bordaMovel, RED );
+  return;
+}
+
+// EXTENSÃO -- Deriva ponteiro do agora espesso.
+
+PonteiroAgoraEspesso* PonteiroAgoraEspesso_construtor( CirculoDasHoras* circuloHoras )
+{
+  PonteiroAgoraEspesso* ponteiroAgoraEspesso = malloc( sizeof( PonteiroAgoraEspesso ) );
+
+  ponteiroAgoraEspesso->ponteiroAgora = PonteiroAgora_construtor( circuloHoras );
+  ponteiroAgoraEspesso->espessura = ESPESSURA_PONTEIRO_ESPESSO;
+  
+  return ponteiroAgoraEspesso;
+}
+
+void PonteiroAgoraEspesso_destrutor( PonteiroAgoraEspesso* ponteiroAgoraEspesso )
+{
+  PonteiroAgora_destrutor( ponteiroAgoraEspesso->ponteiroAgora );
+  free(ponteiroAgoraEspesso);
+}
+
+//Vector2 startPos, Vector2 endPos, float thick, Color color
+void renderizarPonteiroDoAgoraComEspessura(
+      void(*renderizador)(Vector2,Vector2,float,Color),
+      PonteiroAgoraEspesso* ponteiroAgoraEspesso,
+      CirculoDasHoras* circuloHoras
+    )
+{
+  carregarHoraMinutoCorrente( ponteiroAgoraEspesso->ponteiroAgora );
+  rotacionarHorariamentePonteiroAgora( ponteiroAgoraEspesso->ponteiroAgora, circuloHoras );
+  computarAnguloEmFuncaoDaHora( ponteiroAgoraEspesso->ponteiroAgora );
+  computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( ponteiroAgoraEspesso->ponteiroAgora );
+  renderizador( *ponteiroAgoraEspesso->ponteiroAgora->centro, *ponteiroAgoraEspesso->ponteiroAgora->bordaMovel, ponteiroAgoraEspesso->espessura, RED );
   return;
 }
 

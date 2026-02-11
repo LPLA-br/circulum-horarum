@@ -19,16 +19,33 @@ typedef struct
   Vector2* bordaMovel;
 } PonteiroAgora;
 
-PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circulo );
+PonteiroAgora* PonteiroAgora_construtor( CirculoDasHoras* circuloHoras );
 void PonteiroAgora_destrutor( PonteiroAgora* ponteiroAgora );
 
-void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh );
+void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, CirculoDasHoras* circuloHoras );
 void definirGMT( PonteiroAgora* ponteiroAgora , int8_t GMTproposto );
 void carregarHoraMinutoCorrente( PonteiroAgora* ponteiroAgora );
 
 void computarAnguloEmFuncaoDaHora( PonteiroAgora* ponteiroAgora );
 void computarAcrescimoDosMinutosParaAnguloDaHoraComputadada( PonteiroAgora* ponteiroAgora );
 
-void renderizarPonteiroDoAgora( void(*renderizador)(Vector2,Vector2,Color), PonteiroAgora* ponteiroAgora, CirculoDasHoras* cdh );
+void renderizarPonteiroDoAgora( void(*renderizador)(Vector2,Vector2,Color), PonteiroAgora* ponteiroAgora, CirculoDasHoras* circuloHoras );
+
+// EXTENSÃO
+
+typedef struct
+{
+  PonteiroAgora* ponteiroAgora;
+  float espessura;
+} PonteiroAgoraEspesso;
+
+PonteiroAgoraEspesso* PonteiroAgoraEspesso_construtor( CirculoDasHoras* circuloHoras );
+void PonteiroAgoraEspesso_destrutor( PonteiroAgoraEspesso* ponteiroAgoraEspesso );
+
+void renderizarPonteiroDoAgoraComEspessura(
+      void(*renderizador)(Vector2,Vector2,float,Color),
+      PonteiroAgoraEspesso* ponteiroAgoraEspesso,
+      CirculoDasHoras* circuloHoras
+    );
 
 #endif // PONTEIROAGORA_H_INCLUDED

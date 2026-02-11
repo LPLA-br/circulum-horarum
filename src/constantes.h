@@ -7,6 +7,9 @@
 #define HORAS_NO_DIA 24
 #define MINUTOS_NA_HORA 60
 
+#define ESPESSURA_PONTEIRO_ESPESSO 4
+
+//circulo das horas
 #define CIRCULO_GRAUS 360
 
 //Desc: patch de correção de posição das horas.

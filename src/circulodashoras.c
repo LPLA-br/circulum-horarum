@@ -6,33 +6,33 @@
 
 CirculoDasHoras* CirculoDasHoras_construtor( Tela* tela )
 {
-  CirculoDasHoras* cdh = malloc( sizeof( CirculoDasHoras ) );
+  CirculoDasHoras* circuloHoras = malloc( sizeof( CirculoDasHoras ) );
 
-  cdh->posicao = malloc( sizeof( Vector2 ) );
+  circuloHoras->posicao = malloc( sizeof( Vector2 ) );
 
-  cdh->raio =       (float)tela->largura/2-(10.0/2);
-  cdh->posicao->x = (float)tela->largura/2;
-  cdh->posicao->y = (float)tela->altura/2;
+  circuloHoras->raio =       (float)tela->largura/2-(10.0/2);
+  circuloHoras->posicao->x = (float)tela->largura/2;
+  circuloHoras->posicao->y = (float)tela->altura/2;
 
-  return cdh;
+  return circuloHoras;
 }
 
-void CirculoDasHoras_destrutor( CirculoDasHoras* circulo )
+void CirculoDasHoras_destrutor( CirculoDasHoras* circuloHoras )
 {
-  if ( circulo != NULL )
+  if ( circuloHoras != NULL )
   {
     //dependências
-    free(circulo->posicao );
-    free( circulo );
+    free(circuloHoras->posicao );
+    free( circuloHoras );
     return;
   }
   perror("CirculoDasHoras é NULL");
   exit(1);
 }
 
-void renderizarCirculoDasHoras( void(*renderizador)(Vector2,float,Color), CirculoDasHoras* cdh )
+void renderizarCirculoDasHoras( void(*renderizador)(Vector2,float,Color), CirculoDasHoras* circuloHoras )
 {
-  renderizador( *cdh->posicao, cdh->raio, WHITE );
+  renderizador( *circuloHoras->posicao, circuloHoras->raio, WHITE );
   return;
 }
 
@@ -47,36 +47,43 @@ CirculoDasHorasBidividido* CirculoDasHorasBidividido_construtor( Tela* tela, int
     segmentos = 75;
   }
 
-  CirculoDasHorasBidividido* cdhb = malloc( sizeof( CirculoDasHorasBidividido ) );
+  CirculoDasHorasBidividido* circuloHorasBidividido = malloc( sizeof( CirculoDasHorasBidividido ) );
 
-  cdhb->cdh = CirculoDasHoras_construtor( tela );
-  cdhb->SemiCirculos = malloc( sizeof( SemiCirculo ) * QUANTIDADE_SEMI_CIRCULOS_CIRCULO_DAS_HORAS );
+  circuloHorasBidividido->circuloHoras = CirculoDasHoras_construtor( tela );
+  circuloHorasBidividido->SemiCirculos = malloc( sizeof( SemiCirculo ) * QUANTIDADE_SEMI_CIRCULOS_CIRCULO_DAS_HORAS );
 
-  cdhb->SemiCirculos[0].anguloInicial = 0.0;
-  cdhb->SemiCirculos[0].anguloFinal = 180.0;
-  cdhb->SemiCirculos[0].cor = WHITE;
+  circuloHorasBidividido->SemiCirculos[0].anguloInicial = 0.0;
+  circuloHorasBidividido->SemiCirculos[0].anguloFinal = 180.0;
+  circuloHorasBidividido->SemiCirculos[0].cor = WHITE;
 
-  cdhb->SemiCirculos[1].anguloInicial = 180.0;
-  cdhb->SemiCirculos[1].anguloFinal = 360.0;
-  cdhb->SemiCirculos[1].cor = DARKGRAY;
+  circuloHorasBidividido->SemiCirculos[1].anguloInicial = 180.0;
+  circuloHorasBidividido->SemiCirculos[1].anguloFinal = 360.0;
+  circuloHorasBidividido->SemiCirculos[1].cor = DARKGRAY;
 
-  cdhb->segmentos = segmentos;
+  circuloHorasBidividido->segmentos = segmentos;
 
-  return cdhb;
+  return circuloHorasBidividido;
 }
 
-void CirculoDasHorasBidividido_destrutor( CirculoDasHorasBidividido* cdhb )
+void CirculoDasHorasBidividido_destrutor( CirculoDasHorasBidividido* circuloHorasBidividido )
 {
-  CirculoDasHoras_destrutor( cdhb->cdh );
-  free(cdhb->SemiCirculos);
-  free( cdhb );
+  CirculoDasHoras_destrutor( circuloHorasBidividido->circuloHoras );
+  free(circuloHorasBidividido->SemiCirculos);
+  free( circuloHorasBidividido );
 }
 
-void renderizarCirculoDasHorasBidividido( void(*renderizador)(Vector2,float,float,float,int,Color), CirculoDasHorasBidividido* cdhb )
+void renderizarCirculoDasHorasBidividido( void(*renderizador)(Vector2,float,float,float,int,Color), CirculoDasHorasBidividido* circuloHorasBidividido )
 {
   for ( int i = 0; i < QUANTIDADE_SEMI_CIRCULOS_CIRCULO_DAS_HORAS; i++ )
   {
-    renderizador( *(cdhb->cdh->posicao), cdhb->cdh->raio, cdhb->SemiCirculos[i].anguloInicial, cdhb->SemiCirculos[i].anguloFinal, cdhb->segmentos, cdhb->SemiCirculos[i].cor );
+    renderizador(
+          *(circuloHorasBidividido->circuloHoras->posicao),
+          circuloHorasBidividido->circuloHoras->raio,
+          circuloHorasBidividido->SemiCirculos[i].anguloInicial,
+          circuloHorasBidividido->SemiCirculos[i].anguloFinal,
+          circuloHorasBidividido->segmentos,
+          circuloHorasBidividido->SemiCirculos[i].cor
+        );
   }
   return;
 }

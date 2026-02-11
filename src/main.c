@@ -15,10 +15,10 @@
 int main(void)
 {
   Tela* tela = Tela_construtor( 1600, 700, "CIRCVLVM HORARVM" );
-  CirculoDasHorasBidividido* cdhb = CirculoDasHorasBidividido_construtor( tela, 100 );
-  RaioFixo* raiosHoras = RaiosDasHoras_policonstrutor( cdhb->cdh );
-  PonteiroAgora* pa = PonteiroAgora_construtor( cdhb->cdh );
-  definirGMT( pa, -3 );
+  CirculoDasHorasBidividido* circuloHorasBidividido = CirculoDasHorasBidividido_construtor( tela, 100 );
+  RaioFixo* raiosHoras = RaiosDasHoras_policonstrutor( circuloHorasBidividido->circuloHoras );
+  PonteiroAgoraEspesso* ponteiroAgoraEspesso = PonteiroAgoraEspesso_construtor( circuloHorasBidividido->circuloHoras );
+  definirGMT( ponteiroAgoraEspesso->ponteiroAgora, -3 );
 
   InitWindow( tela->largura, tela->altura, tela->titulo );
   SetTargetFPS( 30 );
@@ -29,18 +29,18 @@ int main(void)
       ClearBackground(BLACK);
       DrawText( "CIRCVLVM HORARVM", 10, 10, 20, WHITE );
 
-      renderizarCirculoDasHorasBidividido( DrawCircleSector, cdhb );
+      renderizarCirculoDasHorasBidividido( DrawCircleSector, circuloHorasBidividido );
       renderizarRaiosFixos( DrawLineV, raiosHoras );
-      renderizarPonteiroDoAgora( DrawLineV, pa, cdhb->cdh );
-      renderizarNumeros( DrawText, cdhb->cdh );
+      renderizarPonteiroDoAgoraComEspessura( DrawLineEx, ponteiroAgoraEspesso, circuloHorasBidividido->circuloHoras  );
+      renderizarNumeros( DrawText, circuloHorasBidividido->circuloHoras );
 
     EndDrawing();
   }
 
   //desalocação em sequência reversa.
-  PonteiroAgora_destrutor( pa );
+  PonteiroAgoraEspesso_destrutor( ponteiroAgoraEspesso );
   RaiosDasHoras_polidestrutor( raiosHoras );
-  CirculoDasHorasBidividido_destrutor( cdhb );
+  CirculoDasHorasBidividido_destrutor( circuloHorasBidividido );
   Tela_destrutor( tela );
   CloseWindow();
   exit(0);

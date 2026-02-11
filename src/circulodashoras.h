@@ -12,10 +12,10 @@ typedef struct
 } CirculoDasHoras;
 
 CirculoDasHoras* CirculoDasHoras_construtor( Tela* tela );
-void CirculoDasHoras_destrutor( CirculoDasHoras* circulo );
+void CirculoDasHoras_destrutor( CirculoDasHoras* circuloHoras );
 
 // @obsoleto
-void renderizarCirculoDasHoras( void(*renderizador)(Vector2,float,Color), CirculoDasHoras* cdh );
+void renderizarCirculoDasHoras( void(*renderizador)(Vector2,float,Color), CirculoDasHoras* circuloHoras );
 
 // EXTENSÃO - NOVA FORMA DE RENDERIZAR O CIRCULO DAS HORAS. -------------------------------------------
 
@@ -31,14 +31,14 @@ typedef struct
 // float startAngle, float endAngle, int segments, Color color
 typedef struct
 {
-  CirculoDasHoras* cdh;
+  CirculoDasHoras* circuloHoras;
   SemiCirculo* SemiCirculos;
   int segmentos;
 } CirculoDasHorasBidividido;
 
 CirculoDasHorasBidividido* CirculoDasHorasBidividido_construtor( Tela* tela, int segmentos );
-void CirculoDasHorasBidividido_destrutor( CirculoDasHorasBidividido* cdhb );
+void CirculoDasHorasBidividido_destrutor( CirculoDasHorasBidividido* circuloHorasBidividido );
 
-void renderizarCirculoDasHorasBidividido( void(*renderizador)(Vector2,float,float,float,int,Color), CirculoDasHorasBidividido* cdhb );
+void renderizarCirculoDasHorasBidividido( void(*renderizador)(Vector2,float,float,float,int,Color), CirculoDasHorasBidividido* circuloHorasBidividido );
 
 #endif
