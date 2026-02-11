@@ -15,9 +15,9 @@
 int main(void)
 {
   Tela* tela = Tela_construtor( 1600, 700, "CIRCVLVM HORARVM" );
-  CirculoDasHoras* cdh = CirculoDasHoras_construtor( tela );
-  RaioFixo* raiosHoras = RaiosDasHoras_policonstrutor( cdh );
-  PonteiroAgora* pa = PonteiroAgora_construtor( cdh );
+  CirculoDasHorasBidividido* cdhb = CirculoDasHorasBidividido_construtor( tela, 100 );
+  RaioFixo* raiosHoras = RaiosDasHoras_policonstrutor( cdhb->cdh );
+  PonteiroAgora* pa = PonteiroAgora_construtor( cdhb->cdh );
   definirGMT( pa, -3 );
 
   InitWindow( tela->largura, tela->altura, tela->titulo );
@@ -29,10 +29,10 @@ int main(void)
       ClearBackground(BLACK);
       DrawText( "CIRCVLVM HORARVM", 10, 10, 20, WHITE );
 
-      renderizarCirculoDasHoras( DrawCircleV, cdh );
+      renderizarCirculoDasHorasBidividido( DrawCircleSector, cdhb );
       renderizarRaiosFixos( DrawLineV, raiosHoras );
-      renderizarPonteiroDoAgora( DrawLineV, pa, cdh );
-      renderizarNumeros( DrawText, cdh );
+      renderizarPonteiroDoAgora( DrawLineV, pa, cdhb->cdh );
+      renderizarNumeros( DrawText, cdhb->cdh );
 
     EndDrawing();
   }
@@ -40,7 +40,7 @@ int main(void)
   //desalocação em sequência reversa.
   PonteiroAgora_destrutor( pa );
   RaiosDasHoras_polidestrutor( raiosHoras );
-  CirculoDasHoras_destrutor( cdh );
+  CirculoDasHorasBidividido_destrutor( cdhb );
   Tela_destrutor( tela );
   CloseWindow();
   exit(0);
