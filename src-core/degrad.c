@@ -5,12 +5,12 @@
 
 float radianoParaGrau( float radiano )
 {
-  return radiano * (180/M_PI);
+  return radiano * (180/PI);
 }
 
 float grauParaRadiano( float grau )
 {
-  return grau * (M_PI/180);
+  return grau * (PI/180);
 }
 
 /** Desc: normaliza angulos selvagens que ultrapassam um círculo trigonométrico

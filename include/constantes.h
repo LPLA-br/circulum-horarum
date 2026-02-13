@@ -3,6 +3,10 @@
 
 // CONSTANTES
 
+#ifndef PI
+#define PI 3.14159265358979323846
+#endif
+
 // ponteiroagora
 #define HORAS_NO_DIA 24
 #define MINUTOS_NA_HORA 60

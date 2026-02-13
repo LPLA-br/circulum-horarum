@@ -46,7 +46,7 @@ void rotacionarHorariamentePonteiroAgora( PonteiroAgora* ponteiroAgora, CirculoD
 /** Desc: função pública para correção de GMT */
 void definirGMT( PonteiroAgora* ponteiroAgora , int8_t GMTproposto )
 {
-  if ( GMTproposto >= -11 || GMTproposto <= 12 )
+  if ( GMTproposto >= -11 && GMTproposto <= 12 )
   {
     ponteiroAgora->gmt = GMTproposto;
     return;
