@@ -24,4 +24,7 @@
 
 #define FATIA (float)((float)CIRCULO_GRAUS)/(HORAS_NO_DIA)
 
+//math (patch para indefinição nos padrões não gnu)
+#define M_PI 3.14159265358979323846
+
 #endif // CONSTANTES_H_INCLUDED
