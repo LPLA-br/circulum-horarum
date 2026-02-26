@@ -27,4 +27,14 @@
 //math (patch para indefinição nos padrões não gnu)
 #define M_PI 3.14159265358979323846
 
+// CONSTANTES DEFINIDAS EM TEMPO DE COMPILAÇÃO (-DNOME)
+// tamanho tela
+#ifndef LARGURA 
+	#define LARGURA 800
+#endif
+
+#ifndef ALTURA
+#define ALTURA 600
+#endif
+
 #endif // CONSTANTES_H_INCLUDED

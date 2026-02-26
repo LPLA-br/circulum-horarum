@@ -6,6 +6,8 @@
 
 #include <raylib.h>
 
+#include "constantes.h"
+
 #include "circulodashoras.h"
 #include "tela.h"
 #include "raiofixo.h"
@@ -14,7 +16,7 @@
 
 int main(void)
 {
-  Tela* tela = Tela_construtor( 1600, 700, "CIRCVLVM HORARVM" );
+  Tela* tela = Tela_construtor( LARGURA, ALTURA, "CIRCVLVM HORARVM" );
   CirculoDasHorasBidividido* circuloHorasBidividido = CirculoDasHorasBidividido_construtor( tela, 100 );
   RaioFixo* raiosHoras = RaiosDasHoras_policonstrutor( circuloHorasBidividido->circuloHoras );
   PonteiroAgoraEspesso* ponteiroAgoraEspesso = PonteiroAgoraEspesso_construtor( circuloHorasBidividido->circuloHoras );
