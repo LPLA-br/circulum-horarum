@@ -1,0 +1,57 @@
+\doxysection{ponteiroagora.\+h}
+\hypertarget{ponteiroagora_8h_source}{}\label{ponteiroagora_8h_source}\index{include/ponteiroagora.h@{include/ponteiroagora.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PONTEIROAGORA\_H\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PONTEIROAGORA\_H\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <raylib.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}circulodashoras.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}constantes.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ int8\_t\ gmt;}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{int}\ hora;}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{int}\ minuto;}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{float}\ anguloGraus;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ Vector2*\ centro;}
+\DoxyCodeLine{00019\ \ \ Vector2*\ bordaMovel;}
+\DoxyCodeLine{00020\ \}\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ PonteiroAgora\_construtor(\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circuloHoras\ );}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ PonteiroAgora\_destrutor(\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ ponteiroAgora\ );}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ rotacionarHorariamentePonteiroAgora(\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ ponteiroAgora,\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circuloHoras\ );}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ definirGMT(\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ ponteiroAgora\ ,\ int8\_t\ GMTproposto\ );}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ carregarHoraMinutoCorrente(\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ ponteiroAgora\ );}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ computarAnguloEmFuncaoDaHora(\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ ponteiroAgora\ );}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ computarAcrescimoDosMinutosParaAnguloDaHoraComputadada(\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ ponteiroAgora\ );}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ renderizarPonteiroDoAgora(\ \textcolor{keywordtype}{void}(*renderizador)(Vector2,Vector2,Color),\ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ ponteiroAgora,\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circuloHoras\ );}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ EXTENSÃO}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \doxymbox{\hyperlink{structPonteiroAgora}{PonteiroAgora}}*\ ponteiroAgora;}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{float}\ espessura;}
+\DoxyCodeLine{00040\ \}\ \doxymbox{\hyperlink{structPonteiroAgoraEspesso}{PonteiroAgoraEspesso}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \doxymbox{\hyperlink{structPonteiroAgoraEspesso}{PonteiroAgoraEspesso}}*\ PonteiroAgoraEspesso\_construtor(\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circuloHoras\ );}
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ PonteiroAgoraEspesso\_destrutor(\ \doxymbox{\hyperlink{structPonteiroAgoraEspesso}{PonteiroAgoraEspesso}}*\ ponteiroAgoraEspesso\ );}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ renderizarPonteiroDoAgoraComEspessura(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \textcolor{keywordtype}{void}(*renderizador)(Vector2,Vector2,\textcolor{keywordtype}{float},Color),}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \doxymbox{\hyperlink{structPonteiroAgoraEspesso}{PonteiroAgoraEspesso}}*\ ponteiroAgoraEspesso,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circuloHoras}
+\DoxyCodeLine{00049\ \ \ \ \ );}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PONTEIROAGORA\_H\_INCLUDED}}
+
+\end{DoxyCode}

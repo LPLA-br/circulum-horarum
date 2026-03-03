@@ -1,0 +1,27 @@
+\doxysection{raiofixo.\+h}
+\hypertarget{raiofixo_8h_source}{}\label{raiofixo_8h_source}\index{include/raiofixo.h@{include/raiofixo.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RAIOFIXO\_H\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RAIOFIXO\_H\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <raylib.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}circulodashoras.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \ \ Vector2*\ centro;}
+\DoxyCodeLine{00010\ \ \ Vector2*\ borda;}
+\DoxyCodeLine{00011\ \}\ \doxymbox{\hyperlink{structRaioFixo}{RaioFixo}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \doxymbox{\hyperlink{structRaioFixo}{RaioFixo}}*\ RaiosDasHoras\_policonstrutor(\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circulo\ );}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ RaiosDasHoras\_polidestrutor(\ \doxymbox{\hyperlink{structRaioFixo}{RaioFixo}}*\ raiosFixos\ );}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//PRIVADO}}
+\DoxyCodeLine{00017\ Vector2*\ obterComponentesXYBorda\_subconstrutor(\ Vector2*\ centro,\ \textcolor{keywordtype}{float}\ raio,\ \textcolor{keywordtype}{float}\ anguloGraus\ );}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ renderizarRaiosFixos(\ \textcolor{keywordtype}{void}(*renderizador)(Vector2,Vector2,Color),\ \doxymbox{\hyperlink{structRaioFixo}{RaioFixo}}*\ raios\ );}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RAIOFIXO\_H\_INCLUDED}}
+
+\end{DoxyCode}

@@ -3,6 +3,18 @@
 Aplicação de relógio das vinte e quatro horas para teres uma
 visão aprimorada do teu dia.
 
+# DA DOCUMENTAÇÃO
+
+Este projeto possui documentação automaticamente gerada
+pelo doxygen. Para lê-las entre no diretório
+"./docs/doxygen-output"
+
+Para compilar o output pdf usando o pdflatex execute make em
+"./docs/doxygen-output/latex"
+
+Para visualizar em navegador: "./docs/doxygen-output/html/index.html"
+
+
 # COMO COMPILAR E EXECUTAR ESTE SOFTWARE
 
 Compilação da versão em debug:

@@ -1,0 +1,50 @@
+\doxysection{circulodashoras.\+h}
+\hypertarget{circulodashoras_8h_source}{}\label{circulodashoras_8h_source}\index{include/circulodashoras.h@{include/circulodashoras.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CIRCULO\_DAS\_HORAS\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CIRCULO\_DAS\_HORAS\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <raylib.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}tela.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \textcolor{keywordtype}{float}\ raio;}
+\DoxyCodeLine{00011\ \ \ Vector2*\ posicao;}
+\DoxyCodeLine{00012\ \}\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ CirculoDasHoras\_construtor(\ \doxymbox{\hyperlink{structTela}{Tela}}*\ tela\ );}
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ CirculoDasHoras\_destrutor(\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circuloHoras\ );}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ @obsoleto}}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ renderizarCirculoDasHoras(\ \textcolor{keywordtype}{void}(*renderizador)(Vector2,\textcolor{keywordtype}{float},Color),\ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circuloHoras\ );}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ EXTENSÃO\ -\/\ NOVA\ FORMA\ DE\ RENDERIZAR\ O\ CIRCULO\ DAS\ HORAS.\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ QUANTIDADE\_SEMI\_CIRCULOS\_CIRCULO\_DAS\_HORAS\ 2}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{float}\ anguloInicial;}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{float}\ anguloFinal;}
+\DoxyCodeLine{00028\ \ \ Color\ cor;}
+\DoxyCodeLine{00029\ \}\ \doxymbox{\hyperlink{structSemiCirculo}{SemiCirculo}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ float\ startAngle,\ float\ endAngle,\ int\ segments,\ Color\ color}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \doxymbox{\hyperlink{structCirculoDasHoras}{CirculoDasHoras}}*\ circuloHoras;}
+\DoxyCodeLine{00035\ \ \ \doxymbox{\hyperlink{structSemiCirculo}{SemiCirculo}}*\ SemiCirculos;}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{int}\ segmentos;}
+\DoxyCodeLine{00037\ \}\ \doxymbox{\hyperlink{structCirculoDasHorasBidividido}{CirculoDasHorasBidividido}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \doxymbox{\hyperlink{structCirculoDasHorasBidividido}{CirculoDasHorasBidividido}}*\ CirculoDasHorasBidividido\_construtor(\ \doxymbox{\hyperlink{structTela}{Tela}}*\ tela,\ \textcolor{keywordtype}{int}\ segmentos\ );}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ CirculoDasHorasBidividido\_destrutor(\ \doxymbox{\hyperlink{structCirculoDasHorasBidividido}{CirculoDasHorasBidividido}}*\ circuloHorasBidividido\ );}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ renderizarCirculoDasHorasBidividido(\ \textcolor{keywordtype}{void}(*renderizador)(Vector2,\textcolor{keywordtype}{float},\textcolor{keywordtype}{float},\textcolor{keywordtype}{float},\textcolor{keywordtype}{int},Color),\ \doxymbox{\hyperlink{structCirculoDasHorasBidividido}{CirculoDasHorasBidividido}}*\ circuloHorasBidividido\ );}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
